@@ -1,1 +1,2 @@
-# rust-practitec
+# rust-practice
+
