@@ -1,39 +1,36 @@
 use rusty_ulid::Ulid;
-use email_address::EmailAddress;
 use serde::{Deserialize, Serialize};
 
 use crate::object::{UserDiscriminator, UserName};
 
 /**
- * ユーザーEntityの構造体
+ * ユーザーモデルの構造体
+ * サロゲートキー、個人情報、認証情報、監査情報を合成したモデル
  */
 #[derive(Serialize, Deserialize, Debug)]
 pub struct User {
     pub id: Ulid,
-    pub discriminator: UserDiscriminator,
-    pub name: UserName,
-    pub email: EmailAddress,
-    pub password: Password,
+    pub personal_information: PersonalInformation,
+    pub authentication: Authentication,
+    pub audit: Audit,
 }
 
 /**
- * 構造体のメソッド
+ * 構造体のコンストラクタメソッド
  * インスタンスを生成
  */
 impl User {
     pub fn new(
         id: Ulid,
-        discriminator: UserDiscriminator,
-        name: UserName,
-        email: EmailAddress,
-        password: Password,
+        personal_info: PersonalInformation,
+        auth: Authentication,
+        audit: Audit,
     ) -> Self {
         Self {
             id,
-            discriminator,
-            name,
-            email,
-            password,
+            personal_info,
+            auth,
+            audit,
         }
     }
 }
