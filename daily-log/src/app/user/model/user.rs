@@ -1,7 +1,8 @@
 use rusty_ulid::Ulid;
 use serde::{Deserialize, Serialize};
 
-use crate::object::{UserDiscriminator, UserName};
+use crate::app::shared::AuditInformation;
+use crate::object::{Authentication, PersonalInformation};
 
 /**
  * ユーザーモデルの構造体
@@ -12,7 +13,7 @@ pub struct User {
     pub id: Ulid,
     pub personal_information: PersonalInformation,
     pub authentication: Authentication,
-    pub audit: Audit,
+    pub audit: AuditInformation,
 }
 
 /**
@@ -24,7 +25,7 @@ impl User {
         id: Ulid,
         personal_info: PersonalInformation,
         auth: Authentication,
-        audit: Audit,
+        audit: AuditInformation,
     ) -> Self {
         Self {
             id,
