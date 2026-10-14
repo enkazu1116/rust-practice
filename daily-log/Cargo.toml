@@ -4,5 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+chrono = "0.4"
+regex = "1"
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 topcoat = "0.5.0"
