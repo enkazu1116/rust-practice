@@ -2,7 +2,7 @@ use rusty_ulid::Ulid;
 use serde::{Deserialize, Serialize};
 
 use crate::app::shared::AuditInformation;
-use crate::object::{Authentication, PersonalInformation};
+use crate::app::user::model::value_objects::{Authentication, PersonalInformation};
 
 /**
  * ユーザーモデルの構造体
@@ -29,8 +29,8 @@ impl User {
     ) -> Self {
         Self {
             id,
-            personal_info,
-            auth,
+            personal_information: personal_info,
+            authentication: auth,
             audit,
         }
     }

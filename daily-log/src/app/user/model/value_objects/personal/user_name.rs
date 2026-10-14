@@ -46,4 +46,9 @@ impl UserName {
             last_name: last_name.to_string(),
         })
     }
+
+    /// 苗字と名前を空白1つでつないだ、データベースに保存するユーザー名
+    pub fn user_name(&self) -> String {
+        format!("{} {}", self.first_name, self.last_name)
+    }
 }

@@ -26,4 +26,8 @@ impl EmailAddress {
 
         Ok(Self(email))
     }
+
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
 }

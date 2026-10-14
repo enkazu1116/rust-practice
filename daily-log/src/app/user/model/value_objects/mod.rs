@@ -1,7 +1,7 @@
 #[path = "personal/mod.rs"]
 mod personal;
 
-#[path = "auth/Authentication.rs"]
+#[path = "auth/authentication.rs"]
 mod authentication;
 
 pub use authentication::Authentication;

@@ -6,5 +6,7 @@ edition = "2024"
 [dependencies]
 chrono = "0.4"
 regex = "1"
+rusty_ulid = "2"
+serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 topcoat = "0.5.0"
