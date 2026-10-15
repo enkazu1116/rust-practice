@@ -29,7 +29,7 @@ impl MigrationTrait for Migration {
                             .unique_key(),
                     )
                     .col(
-                        ColumnDef::new(Users::Name)
+                        ColumnDef::new(Users::UserName)
                             .varchar(255)
                             .not_null(),
                     )
@@ -38,6 +38,11 @@ impl MigrationTrait for Migration {
                             .varchar(255)
                             .not_null()
                             .unique_key(),
+                    )
+                    .col(
+                        ColumnDef::new(Users::Password)
+                            .varchar(255)
+                            .not_null(),
                     )
                     .to_owned(),
             )
@@ -56,6 +61,7 @@ pub enum Users {
     Table,
     Id,
     Discriminator,
-    Name,
+    UserName,
     Email,
+    Password,
 }

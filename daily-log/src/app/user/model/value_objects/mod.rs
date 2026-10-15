@@ -1,8 +1,5 @@
-#[path = "personal/mod.rs"]
+mod authentication;
 mod personal;
 
-#[path = "auth/authentication.rs"]
-mod authentication;
-
-pub use authentication::Authentication;
+pub use authentication::{Authentication, Password};
 pub use personal::{EmailAddress, PersonalInformation, UserName};

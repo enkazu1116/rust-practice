@@ -1,4 +1,4 @@
-pub mod user;
+pub mod domain;
 pub mod value_objects;
 
-pub use user::User;
+pub use domain::User;

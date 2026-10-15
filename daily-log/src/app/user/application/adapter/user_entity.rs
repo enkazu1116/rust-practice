@@ -1,5 +1,21 @@
-use crate::app::user::application::adapter::persistence::entity::UserEntity;
+use chrono::{DateTime, Utc};
+use rusty_ulid::Ulid;
+
 use crate::app::user::model::User;
+
+/**
+ * ユーザーテーブルの1行
+ */
+#[derive(Debug)]
+pub struct UserEntity {
+    pub id: Ulid,
+    pub user_name: String,
+    pub email: String,
+    pub password: String,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
+    pub deleted_at: Option<DateTime<Utc>>,
+}
 
 /**
  * ユーザーモデルを、テーブルの列に対応するエンティティへ変換する
