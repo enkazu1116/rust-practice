@@ -11,3 +11,9 @@ target/
 
 # rustfmt のバックアップ
 **/*.rs.bk
+
+# Terraform
+terraform.tfvars
+.terraform/
+*.tfstate
+*.tfstate.*

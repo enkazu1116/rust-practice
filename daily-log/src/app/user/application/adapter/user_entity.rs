@@ -1,12 +1,13 @@
 use chrono::{DateTime, Utc};
 use rusty_ulid::Ulid;
+user sea_orm::entity::prelude::*;
 
 use crate::app::user::model::User;
 
 /**
  * ユーザーテーブルの1行
  */
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, DeriveEntityModel, Eq)]
 pub struct UserEntity {
     pub id: Ulid,
     pub user_name: String,
