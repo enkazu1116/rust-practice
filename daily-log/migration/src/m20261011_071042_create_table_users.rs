@@ -10,7 +10,7 @@ impl MigrationName for Migration {
 
 #[async_trait::async_trait]
 impl MigrationTrait for Migration {
-    async fn up(&self, _manager: &SchemaManager) -> Result<(), DbErr> {
+    async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
             .create_table(
                 Table::create()
@@ -23,28 +23,27 @@ impl MigrationTrait for Migration {
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(Users::Discriminator)
-                            .varchar(24)
+                        ColumnDef::new(Users::UserName)
+                            .string_len(30)
                             .not_null()
                             .unique_key(),
-                    )
-                    .col(
-                        ColumnDef::new(Users::Name)
-                            .varchar(255)
-                            .not_null(),
                     )
                     .col(
                         ColumnDef::new(Users::Email)
-                            .varchar(255)
-                            .not_null()
-                            .unique_key(),
+                            .string_len(255)
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(Users::Password)
+                            .string()
+                            .not_null(),
                     )
                     .to_owned(),
             )
             .await
     }
 
-    async fn down(&self, _manager: &SchemaManager) -> Result<(), DbErr> {
+    async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
         .drop_table(Table::drop().table(Users::Table).to_owned())
         .await
@@ -55,7 +54,7 @@ impl MigrationTrait for Migration {
 pub enum Users {
     Table,
     Id,
-    Discriminator,
-    Name,
+    UserName,
     Email,
+    Password,
 }

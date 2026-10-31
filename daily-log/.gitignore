@@ -1,2 +1,19 @@
 # ビルド成果物
-/target/
+target/
+
+# 環境変数。DATABASE_URL などの秘密情報を含む
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+# rustfmt のバックアップ
+**/*.rs.bk
+
+# Terraform
+terraform.tfvars
+.terraform/
+*.tfstate
+*.tfstate.*
