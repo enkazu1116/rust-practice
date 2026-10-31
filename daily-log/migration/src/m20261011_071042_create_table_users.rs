@@ -54,9 +54,7 @@ impl MigrationTrait for Migration {
 pub enum Users {
     Table,
     Id,
-    PersonalInformation,
     UserName,
     Email,
     Password,
-    Authentication,
 }
