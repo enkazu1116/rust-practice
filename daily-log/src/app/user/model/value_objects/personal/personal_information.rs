@@ -1,9 +1,11 @@
+use serde::{Deserialize, Serialize};
+
 use super::{EmailAddress, UserName};
 
 /**
  * 個人情報の概念モデル
  */
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PersonalInformation {
     pub name: UserName,
     pub email: EmailAddress,

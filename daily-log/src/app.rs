@@ -9,5 +9,5 @@ use topcoat::{
 
 // ルーター定義
 pub fn router() -> topcoat::router::Router {
-    topcaot::router::module_router!().build()
+    topcoat::router::module_router!().build()
 }

@@ -1,6 +1,7 @@
 mod app;
+mod infrastructure;
 
 #[tokio::main]
 async fn main() {
-    topcaot::start(app::router()).await.unwrap();
+    topcoat::start(app::router()).await.unwrap();
 }
