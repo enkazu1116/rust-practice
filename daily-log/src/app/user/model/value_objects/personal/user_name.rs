@@ -1,4 +1,5 @@
 use regex::Regex;
+use serde::{Deserialize, Serialize};
 
 /// 苗字・名前として許可する文字
 const REGEXP_USER_NAME: &str = r"^[A-Za-z\p{Hiragana}\p{Katakana}\p{Han}々ー]+$";
@@ -10,7 +11,7 @@ const REGEXP_USER_NAME: &str = r"^[A-Za-z\p{Hiragana}\p{Katakana}\p{Han}々ー]+
  * ユーザーモデルでは、苗字と名前をもとに作成したことを意識せず使用するために
  * 概念で先に定義・使用する際には正しく合成されたもののみが扱えるようにする。
  */
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct UserName {
     first_name: String,
     last_name: String,

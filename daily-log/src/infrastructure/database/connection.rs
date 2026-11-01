@@ -1,28 +1,17 @@
-use std::env;
-use sea_orm:{ConnectionOptions, Database, DbConn, DbErr};
+use std::time::Duration;
 
-/**
- * DB接続確認
- */
-pub async fn check_connection(db: DabaseConnection) {
-    // コネクション生成
-    let db = establish_connection().await?;
-    assert!(db.ping().await.is_ok());
+use db_config::DbConfig;
+use sea_orm::{ConnectOptions, Database, DbConn, DbErr};
 
-    db.clone().close().await();
-    assert!(matches!(db.ping().await, Err(DbErr::ConnectionAcquire)));
-}
-
-/**
- * DBとのコネクション生成
- */
+/// DB とのコネクションを生成する。
+///
+/// 接続情報は Secret Manager から読み、スキーマは検索パスに設定する。
 pub async fn establish_connection() -> Result<DbConn, DbErr> {
-    dotenv().ok();
+    let config = DbConfig::load()
+        .await
+        .map_err(|err| DbErr::Custom(err.to_string()))?;
 
-    let url = env::var("DATABASE_URL").expect("DABASE_URL is not found.");
-
-
-    let mut opt = ConnectionOptions::new(url);
+    let mut opt = ConnectOptions::new(config.url);
     opt.max_connections(100)
         .min_connections(5)
         .connect_timeout(Duration::from_secs(8))
@@ -31,7 +20,7 @@ pub async fn establish_connection() -> Result<DbConn, DbErr> {
         .max_lifetime(Duration::from_secs(8))
         .sqlx_logging(true)
         .sqlx_logging_level(log::LevelFilter::Info)
-        .set_schema_search_path("my_schema"); // set default Postgres schema
+        .set_schema_search_path(config.schema);
 
     Database::connect(opt).await
 }

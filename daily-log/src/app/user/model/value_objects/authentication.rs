@@ -1,8 +1,9 @@
+use serde::{Deserialize, Serialize};
 
 /**
  * 検証済みのパスワード
  */
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Password(String);
 
 impl Password {
@@ -16,7 +17,7 @@ impl Password {
  *
  * パスワードを保持する。
  */
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Authentication {
     pub password: Password,
 }

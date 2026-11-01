@@ -1,11 +1,12 @@
 use regex::Regex;
+use serde::{Deserialize, Serialize};
 
 const REGEXP_EMAIL: &str = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
 /**
  * Emailアドレス
  */
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct EmailAddress(String);
 
 impl EmailAddress {

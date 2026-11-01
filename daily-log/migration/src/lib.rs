@@ -1,5 +1,8 @@
 pub use sea_orm_migration::prelude::*;
 
+pub mod config;
+pub mod secret_manager;
+
 mod m20261011_071042_create_table_users;
 
 pub struct Migrator;

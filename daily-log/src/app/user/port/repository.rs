@@ -8,11 +8,15 @@ pub trait UserRepository {
 }
 
 #[derive(Debug)]
-pub struct RepositoryError;
+pub enum RepositoryError {
+    DatabaseError(String),
+}
 
 impl std::fmt::Display for RepositoryError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "failed to create user")
+        match self {
+            Self::DatabaseError(message) => write!(f, "failed to create user: {message}"),
+        }
     }
 }
 
