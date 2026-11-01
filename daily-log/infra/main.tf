@@ -1,10 +1,15 @@
+resource "random_password" "db" {
+  length  = 32
+  special = true
+}
+
 resource "google_sql_database_instance" "simple_instance" {
-  name = "simple-postgres"
+  name             = var.db_instance_name
   database_version = "POSTGRES_18"
-  region = "asia-northeast1"
+  region           = var.region
 
   settings {
-    tier = "db-f1-micro"
+    tier    = "db-f1-micro"
     edition = "ENTERPRISE"
   }
 
@@ -12,12 +17,12 @@ resource "google_sql_database_instance" "simple_instance" {
 }
 
 resource "google_sql_database" "default_db" {
-  name = "default_postgres"
+  name     = var.db_name
   instance = google_sql_database_instance.simple_instance.name
 }
 
 resource "google_sql_user" "default_user" {
-  name = "admin_user"
-  password = var.db_password
+  name     = var.db_user
+  password = random_password.db.result
   instance = google_sql_database_instance.simple_instance.name
 }
