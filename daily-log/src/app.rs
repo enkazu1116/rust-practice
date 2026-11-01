@@ -1,7 +1,7 @@
 pub mod shared;
 pub mod user;
 
-use topcaot::{
+use topcoat::{
     Result,
     router::{layout, page},
     view::view
@@ -9,5 +9,5 @@ use topcaot::{
 
 // ルーター定義
 pub fn router() -> topcoat::router::Router {
-    topcaot::router::module_router!().build{}
+    topcaot::router::module_router!().build()
 }
