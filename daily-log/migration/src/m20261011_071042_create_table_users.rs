@@ -16,28 +16,15 @@ impl MigrationTrait for Migration {
                 Table::create()
                     .table(Users::Table)
                     .if_not_exists()
-                    .col(
-                        ColumnDef::new(Users::Id)
-                            .uuid()
-                            .not_null()
-                            .primary_key(),
-                    )
+                    .col(ColumnDef::new(Users::Id).uuid().not_null().primary_key())
                     .col(
                         ColumnDef::new(Users::UserName)
                             .string_len(30)
                             .not_null()
                             .unique_key(),
                     )
-                    .col(
-                        ColumnDef::new(Users::Email)
-                            .string_len(255)
-                            .not_null(),
-                    )
-                    .col(
-                        ColumnDef::new(Users::Password)
-                            .string()
-                            .not_null(),
-                    )
+                    .col(ColumnDef::new(Users::Email).string_len(255).not_null())
+                    .col(ColumnDef::new(Users::Password).string().not_null())
                     .to_owned(),
             )
             .await
@@ -45,8 +32,8 @@ impl MigrationTrait for Migration {
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
-        .drop_table(Table::drop().table(Users::Table).to_owned())
-        .await
+            .drop_table(Table::drop().table(Users::Table).to_owned())
+            .await
     }
 }
 

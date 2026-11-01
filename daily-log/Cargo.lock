@@ -2274,8 +2274,12 @@ dependencies = [
 name = "migration"
 version = "0.1.0"
 dependencies = [
- "db-config",
+ "dotenvy",
+ "google-cloud-secretmanager-v1",
  "sea-orm-migration",
+ "serde",
+ "serde_json",
+ "thiserror",
  "tokio",
 ]
 

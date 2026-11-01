@@ -1,4 +1,4 @@
-use db_config::DbConfig;
+use migration::config::database_config::DatabaseConfig;
 use sea_orm_migration::{
     prelude::*,
     sea_orm::{ConnectOptions, ConnectionTrait, Database},
@@ -6,7 +6,7 @@ use sea_orm_migration::{
 
 #[tokio::main]
 async fn main() {
-    let config = DbConfig::load()
+    let config = DatabaseConfig::loadConfig()
         .await
         .expect("データベース設定を Secret Manager から読めませんでした");
 
