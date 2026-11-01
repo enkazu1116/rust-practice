@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+connection_name="$(curl -fsS \
+  -H "Metadata-Flavor: Google" \
+  "http://metadata.google.internal/computeMetadata/v1/instance/attributes/instance-connection-name")"
+
+exec /usr/local/bin/cloud-sql-proxy \
+  --address 127.0.0.1 \
+  --port 5432 \
+  "${connection_name}"

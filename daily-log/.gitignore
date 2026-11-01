@@ -17,3 +17,6 @@ terraform.tfvars
 .terraform/
 *.tfstate
 *.tfstate.*
+
+# Packer
+packer_cache/

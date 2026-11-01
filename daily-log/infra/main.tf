@@ -4,10 +4,22 @@ module "cloud_sql" {
   depends_on = [google_project_service.enable_apis]
 }
 
+module "compute_engine" {
+  source = "./module/compute_engine"
+
+  project_id               = var.project_id
+  instance_connection_name = module.cloud_sql.instance_connection_name
+
+  depends_on = [google_project_service.enable_apis]
+}
+
 module "secret_manager" {
   source = "./module/secret_manager"
 
   db_connection = module.cloud_sql.connection
+  db_secret_accessor_members = [
+    "serviceAccount:${module.compute_engine.service_account_email}",
+  ]
 
   depends_on = [google_project_service.enable_apis]
 }
