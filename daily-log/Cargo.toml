@@ -4,17 +4,16 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace]
-members = ["migration", "db-config"]
+members = ["migration"]
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }
-db-config = { path = "db-config" }
 log = "0.4"
 regex = "1"
 rusty_ulid = "2"
 serde = { version = "1", features = ["derive"] }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
-topcoat = "0.5.0"
+axum = "0.8.9"
 sea-orm = { 
     version = "2.0.0", 
     features = [
@@ -22,3 +21,4 @@ sea-orm = {
         "runtime-tokio-native-tls", "with-uuid"
     ]
 }
+serde_json = "1.0.154"
